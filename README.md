@@ -1,5 +1,9 @@
 # Minima Social 📱
 
+[![Project Status: WIP](https://img.shields.io/badge/Project%20Status-Work%20In%20Progress-orange?style=flat-square)](https://github.com/YasserAlkabbani/minimasocial)
+
+> ⚠️ **Note:** This project is currently a **Work in Progress**. I am actively developing features, refining the architecture, and adding tests. Feel free to check back often or look at the roadmap below to see what is currently being built!
+
 Minima Social is a modern, offline-first social media Android application designed to showcase high-quality, production-grade native development standards. It enables users to create, edit, view, and like posts with dynamic image attachments, backed by a resilient synchronization engine.
 
 ---
