@@ -21,6 +21,7 @@ android {
         }
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -31,14 +32,22 @@ android {
 
 dependencies {
 
-    implementation(projects.feature.auth.api)
-    implementation(projects.feature.auth.impl)
+    implementation(projects.feature.auth.splash.api)
+    implementation(projects.feature.auth.splash.impl)
+    implementation(projects.feature.auth.login.api)
+    implementation(projects.feature.auth.login.impl)
+    implementation(projects.feature.auth.register.api)
+    implementation(projects.feature.auth.register.impl)
+
     implementation(projects.feature.home.api)
     implementation(projects.feature.home.impl)
+
     implementation(projects.feature.profile.api)
     implementation(projects.feature.profile.impl)
+
     implementation(projects.feature.search.api)
     implementation(projects.feature.search.impl)
+
     implementation(projects.feature.post.create.api)
     implementation(projects.feature.post.create.impl)
     implementation(projects.feature.post.edit.api)

@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 internal fun Project.configureAndroidKotlin(commonExtension: CommonExtension) {
 
     commonExtension.apply {
-        compileSdk = 36
+        compileSdk = 37
 
         defaultConfig.apply {
             minSdk = 28
@@ -26,8 +26,9 @@ internal fun Project.configureAndroidKotlin(commonExtension: CommonExtension) {
     configure<KotlinAndroidProjectExtension> {
         compilerOptions.apply {
             jvmTarget = JvmTarget.JVM_17
-            freeCompilerArgs.add(
+            freeCompilerArgs.addAll(
                 "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xexplicit-backing-fields"
             )
         }
     }

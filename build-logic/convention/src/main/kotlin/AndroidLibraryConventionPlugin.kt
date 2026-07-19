@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.LibraryExtension
 import com.yasser.minimasocial.configureAndroidKotlin
+import com.yasser.minimasocial.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -13,11 +14,11 @@ class AndroidLibraryConventionPlugin: Plugin<Project> {
 
             extensions.configure<LibraryExtension>{
                 configureAndroidKotlin(this)
-                testOptions.targetSdk = 36
+                testOptions.targetSdk = 37
             }
-            dependencies {
-
-            }
+//            dependencies {
+//                "testImplementation"(libs.findLibrary("junit").get())
+//            }
         }
     }
 }
