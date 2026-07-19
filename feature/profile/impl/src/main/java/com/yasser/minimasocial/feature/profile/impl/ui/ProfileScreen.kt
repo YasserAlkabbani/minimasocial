@@ -1,0 +1,33 @@
+package com.yasser.minimasocial.feature.profile.impl.ui
+
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+
+@Composable
+internal fun ProfileScreen(profileViewModel: ProfileViewModel= hiltViewModel()) {
+    ProfileScreen()
+}
+
+@Composable
+fun ProfileScreen(){
+
+
+    Text(
+        modifier = Modifier.fillMaxSize(),
+        text = "PROFILE SCREEN",
+        style = MaterialTheme.typography.displayLarge
+    )
+
+}
+
+
+@Preview
+@Composable
+private fun LoginScreenPreview(){
+    ProfileScreen()
+}

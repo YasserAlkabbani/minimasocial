@@ -37,8 +37,15 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/auth" />
-            <option value="$PROJECT_DIR$/feature/auth/api" />
-            <option value="$PROJECT_DIR$/feature/auth/impl" />
+            <option value="$PROJECT_DIR$/feature/auth/login" />
+            <option value="$PROJECT_DIR$/feature/auth/login/api" />
+            <option value="$PROJECT_DIR$/feature/auth/login/impl" />
+            <option value="$PROJECT_DIR$/feature/auth/register" />
+            <option value="$PROJECT_DIR$/feature/auth/register/api" />
+            <option value="$PROJECT_DIR$/feature/auth/register/impl" />
+            <option value="$PROJECT_DIR$/feature/auth/splash" />
+            <option value="$PROJECT_DIR$/feature/auth/splash/api" />
+            <option value="$PROJECT_DIR$/feature/auth/splash/impl" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/home/api" />
             <option value="$PROJECT_DIR$/feature/home/impl" />

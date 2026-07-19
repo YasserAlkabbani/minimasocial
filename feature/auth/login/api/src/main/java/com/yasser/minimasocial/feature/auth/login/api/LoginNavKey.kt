@@ -1,0 +1,12 @@
+package com.yasser.minimasocial.feature.auth.login.api
+
+import androidx.navigation3.runtime.NavKey
+import com.yasser.minimasocial.core.navigation.Navigator
+import kotlinx.serialization.Serializable
+
+@Serializable
+data object LoginNavKey: NavKey
+
+fun Navigator.navigateToLogin(){
+    navigate(LoginNavKey,true)
+}
