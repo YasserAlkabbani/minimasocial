@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class SignupRequest(
+data class RegisterBodyRequest(
     @SerialName("email") val email: String,
     @SerialName("password") val password: String,
 )

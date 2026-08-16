@@ -2,9 +2,8 @@ package com.yasser.minimasocial.core.network.di
 
 import com.yasser.minimasocial.core.datastore.TokenManager
 import com.yasser.minimasocial.core.network.BuildConfig
-import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenRequest
+import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenBodyRequest
 import com.yasser.minimasocial.core.network.retrofit.AuthNetworkRetrofitApi
-import com.yasser.minimasocial.core.network.retrofit.PostNetworkRetrofitApi
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
@@ -65,7 +64,7 @@ internal object NetworkRetrofitModule {
             val refreshTokenResponse =
                 authNetworkRetrofitApi.get().refreshAccessTokenCallBack(
                     apiKey = BuildConfig.SUPABASE_KEY,
-                    body = RefreshTokenRequest(refreshToken = refreshToken)
+                    body = RefreshTokenBodyRequest(refreshToken = refreshToken)
                 ).execute()
 
             when (refreshTokenResponse.isSuccessful) {

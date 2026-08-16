@@ -18,13 +18,12 @@ private val Context.authDataStore: DataStore<Preferences> by preferencesDataStor
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataStoreObjectModule {
+internal object DataStoreObjectModule {
 
     @Singleton
     @Provides
-    fun provideTokenManager(
-        @ApplicationContext context: Context
-    ): DataStore<Preferences> = context.authDataStore
+    fun provideTokenManager(@ApplicationContext context: Context): DataStore<Preferences> =
+        context.authDataStore
 
 }
 
@@ -32,10 +31,7 @@ object DataStoreObjectModule {
 @InstallIn(SingletonComponent::class)
 abstract class DataStoreModule {
 
-    @Singleton
     @Binds
-    abstract fun bindTokenManager(
-        @ApplicationContext tokenManager: TokenManagerDataStore
-    ): TokenManager
+    abstract fun bindTokenManager(tokenManagerDataStore: TokenManagerDataStore): TokenManager
 
 }

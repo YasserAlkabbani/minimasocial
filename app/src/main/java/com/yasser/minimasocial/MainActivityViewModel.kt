@@ -1,23 +1,24 @@
 package com.yasser.minimasocial
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yasser.minimasocial.core.common.request_result.asStateFlow
+import com.yasser.minimasocial.core.data.repository.auth.AuthRepository
+import com.yasser.minimasocial.core.model.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import java.util.PriorityQueue
 import javax.inject.Inject
-import kotlin.math.absoluteValue
 
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor() : ViewModel() {
+class MainActivityViewModel @Inject constructor(
+    authRepository: AuthRepository
+) : ViewModel() {
+
+    val authState: StateFlow<AuthState> = authRepository.authState().asStateFlow(
+        initValue = AuthState.UNAUTHENTICATED,
+        scope = viewModelScope
+    )
+
 
 }

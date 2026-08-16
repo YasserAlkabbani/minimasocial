@@ -13,8 +13,7 @@ import javax.inject.Inject
 class TokenManagerDataStore @Inject constructor(
     private val dataStorePreferences: DataStore<Preferences>,
     private val cryptoManager: CryptoManager
-) :
-    TokenManager {
+) : TokenManager {
 
     companion object {
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
@@ -56,7 +55,7 @@ class TokenManagerDataStore @Inject constructor(
     }
 
     override fun isLoggedIn(): Flow<Boolean> = dataStorePreferences.data.map {
-        it[ACCESS_TOKEN_KEY].isNullOrEmpty()
+        !it[ACCESS_TOKEN_KEY].isNullOrEmpty()
     }
 
 }

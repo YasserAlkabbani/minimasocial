@@ -1,24 +1,24 @@
 package com.yasser.minimasocial.core.network.data_source.auth
 
-import com.yasser.minimasocial.core.network.model.auth_request.LoginRequest
+import com.yasser.minimasocial.core.network.model.auth_request.LoginBodyRequest
 import com.yasser.minimasocial.core.network.model.auth_request.LoginResponse
-import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenRequest
+import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenBodyRequest
 import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenResponse
-import com.yasser.minimasocial.core.network.model.auth_request.SignupRequest
-import com.yasser.minimasocial.core.network.model.auth_request.SignupResponse
+import com.yasser.minimasocial.core.network.model.auth_request.RegisterBodyRequest
+import com.yasser.minimasocial.core.network.model.auth_request.RegisterResponse
 
 interface AuthNetworkDataSource {
 
-    suspend fun signup(
-        signupRequest: SignupRequest
-    ): SignupResponse
-
     suspend fun login(
-        loginRequest: LoginRequest
+        loginBodyRequest: LoginBodyRequest
     ): LoginResponse
 
+    suspend fun register(
+        registerBodyRequest: RegisterBodyRequest
+    ): RegisterResponse
+
     suspend fun refreshAccessToken(
-        refreshTokenRequest: RefreshTokenRequest
+        refreshTokenBodyRequest: RefreshTokenBodyRequest
     ): RefreshTokenResponse
 
     suspend fun logout()

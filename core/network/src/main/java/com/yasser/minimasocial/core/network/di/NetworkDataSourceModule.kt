@@ -13,6 +13,8 @@ import dagger.hilt.components.SingletonComponent
 internal abstract class NetworkDataSourceModule {
 
     @Binds
-    abstract fun bindAuthNetworkDataSource(authNetworkDataSourceRetrofit: AuthNetworkDataSourceRetrofit): AuthNetworkDataSource
+    internal abstract fun bindAuthNetworkDataSource(
+        authNetworkDataSourceRetrofit: AuthNetworkDataSourceRetrofit
+    ): AuthNetworkDataSource
 
 }
