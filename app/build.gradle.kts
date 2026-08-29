@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.minimasocial.android.application)
     alias(libs.plugins.minimasocial.android.application.compose)
@@ -59,6 +58,7 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.model)
     implementation(projects.core.data)
+    implementation(projects.core.domain)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(projects.core.data)
     implementation(projects.core.ui)
+    implementation(projects.core.domain)
 
     implementation(projects.feature.auth.login.api)
     implementation(projects.feature.auth.register.api)

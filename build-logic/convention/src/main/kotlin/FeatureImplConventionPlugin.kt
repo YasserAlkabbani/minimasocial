@@ -21,6 +21,7 @@ class FeatureImplConventionPlugin : Plugin<Project> {
             dependencies {
 
                 "implementation"(project(":core:ui"))
+                "implementation"(project(":core:common"))
 //                "implementation"(project(":core:designsystem"))
 
                 "implementation"(libs.findLibrary("androidx.lifecycle.runtime.compose").get())
