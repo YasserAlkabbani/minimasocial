@@ -3,6 +3,9 @@ package com.yasser.minimasocial.core.datastore
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -36,19 +39,20 @@ class CryptoManager @Inject constructor() {
         }
     }
 
-    fun encrypt(text: String): String {
+    suspend fun encrypt(text: String): String = withContext(Dispatchers.Default) {
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-        cipher.init(Cipher.ENCRYPT_MODE, getSecretKey())
+        val secretKey = getSecretKey()
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey)
         val iv = cipher.iv
         val encrypted = cipher.doFinal(text.toByteArray())
 
         // Combine IV (12 bytes for GCM) and the encrypted payload
         val combined = iv + encrypted
-        return Base64.encodeToString(combined, Base64.DEFAULT)
+        Base64.encodeToString(combined, Base64.DEFAULT)
     }
 
-    fun decrypt(encryptedText: String): String? {
-        return try {
+    suspend fun decrypt(encryptedText: String): String? = withContext(Dispatchers.Default) {
+        try {
             val combined = Base64.decode(encryptedText, Base64.DEFAULT)
             val iv = combined.copyOfRange(0, 12)
             val encrypted = combined.copyOfRange(12, combined.size)
@@ -58,6 +62,8 @@ class CryptoManager @Inject constructor() {
             cipher.init(Cipher.DECRYPT_MODE, getSecretKey(), spec)
 
             String(cipher.doFinal(encrypted))
+        } catch (cancellationException: CancellationException) {
+            throw cancellationException
         } catch (e: Exception) {
             // Returns null if the token was tampered with or key was invalidated
             null

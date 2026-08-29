@@ -1,26 +1,24 @@
 package com.yasser.minimasocial.core.network.data_source.auth
 
-import com.yasser.minimasocial.core.network.model.auth_request.LoginBodyRequest
-import com.yasser.minimasocial.core.network.model.auth_request.LoginResponse
-import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenBodyRequest
-import com.yasser.minimasocial.core.network.model.auth_request.RefreshTokenResponse
-import com.yasser.minimasocial.core.network.model.auth_request.RegisterBodyRequest
-import com.yasser.minimasocial.core.network.model.auth_request.RegisterResponse
+import com.yasser.minimasocial.core.common.request_result.RequestResult
+import com.yasser.minimasocial.core.network.model.auth.response.LoginResponse
+import com.yasser.minimasocial.core.network.model.auth.request.LoginRequestBody
+import com.yasser.minimasocial.core.network.model.auth.request.RegisterRequestBody
+import com.yasser.minimasocial.core.network.model.auth.response.RegisterResponse
+import com.yasser.minimasocial.core.network.model.auth.response.UserResponse
 
 interface AuthNetworkDataSource {
 
-    suspend fun login(
-        loginBodyRequest: LoginBodyRequest
-    ): LoginResponse
-
     suspend fun register(
-        registerBodyRequest: RegisterBodyRequest
-    ): RegisterResponse
+        registerRequestBody: RegisterRequestBody
+    ): RequestResult<RegisterResponse>
 
-    suspend fun refreshAccessToken(
-        refreshTokenBodyRequest: RefreshTokenBodyRequest
-    ): RefreshTokenResponse
+    suspend fun login(
+        loginRequestBody: LoginRequestBody
+    ): RequestResult<LoginResponse>
 
-    suspend fun logout()
+    suspend fun refreshUser(): RequestResult<UserResponse>
+
+    suspend fun logout(): RequestResult<Boolean>
 
 }

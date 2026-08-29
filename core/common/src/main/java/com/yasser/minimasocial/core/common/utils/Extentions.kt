@@ -1,1 +1,0 @@
-package com.yasser.minimasocial.core.common.utils

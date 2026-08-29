@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import com.yasser.minimasocial.core.designsystem.icon.MSIcon
+import com.yasser.minimasocial.core.designsystem.icon.MSIcons
 
 @Composable
 fun MSFloatingNavigationBarItem(
@@ -33,8 +33,8 @@ fun MSFloatingNavigationBarItem(
 @Composable
 private fun MSFloatingNavigationBarItemPreview() {
     MSFloatingNavigationBarItem(
-        icon = MSIcon.HOME,
-        selectedIcon = MSIcon.HOME_SELECTED,
+        icon = MSIcons.HOME,
+        selectedIcon = MSIcons.HOME_SELECTED,
         selected = false,
         onClick = {}
     )
@@ -44,8 +44,8 @@ private fun MSFloatingNavigationBarItemPreview() {
 @Composable
 private fun MSFloatingNavigationBarItemSelectedPreview() {
     MSFloatingNavigationBarItem(
-        icon = MSIcon.HOME,
-        selectedIcon = MSIcon.HOME_SELECTED,
+        icon = MSIcons.HOME,
+        selectedIcon = MSIcons.HOME_SELECTED,
         selected = true,
         onClick = {}
     )

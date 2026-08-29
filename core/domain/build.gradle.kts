@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.minimasocial.android.library)
+    alias(libs.plugins.minimasocial.hilt)
 }
 
 android {
@@ -10,6 +11,7 @@ dependencies {
 
     implementation(projects.core.data)
     implementation(projects.core.model)
+    implementation(projects.core.common)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

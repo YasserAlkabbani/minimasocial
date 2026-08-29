@@ -1,4 +1,4 @@
-package com.yasser.minimasocial.core.network.model.auth_request
+package com.yasser.minimasocial.core.network.model.auth.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -8,7 +8,7 @@ import com.yasser.minimasocial.core.designsystem.icon.icon_design.icon_profile_s
 import com.yasser.minimasocial.core.designsystem.icon.icon_design.icon_search
 import com.yasser.minimasocial.core.designsystem.icon.icon_design.icon_search_selected
 
-object MSIcon {
+object MSIcons {
     val MINIMA_SOCIAL = icone_app
     val HOME = icon_home
     val HOME_SELECTED = icon_home_selected
