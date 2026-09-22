@@ -12,6 +12,8 @@ sealed interface RequestError {
     data object InvalidInput : RequestError
     data object InvalidEmail : RequestError
     data object InvalidPassword : RequestError
+    data object InvalidTitle : RequestError
+    data object InvalidContent : RequestError
     data object SerializationError : RequestError
     data object NullError : RequestError
     data class UnknownError(val errorMessage: String) : RequestError

@@ -6,11 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.yasser.minimasocial.core.common.request_result.RequestResult
 import com.yasser.minimasocial.core.data.repository.auth.AuthRepository
 import com.yasser.minimasocial.core.domain.auth.RefreshUserUseCase
-import com.yasser.minimasocial.core.model.AuthState
-import com.yasser.minimasocial.core.model.MSUser
+import com.yasser.minimasocial.core.domain.post.SyncPostUseCase
+import com.yasser.minimasocial.core.model.auth.AuthState
+import com.yasser.minimasocial.core.model.user.MSUser
 import com.yasser.minimasocial.core.ui.extentions.asStateFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     authRepository: AuthRepository,
-    private val refreshUserUseCase: RefreshUserUseCase
+    private val refreshUserUseCase: RefreshUserUseCase,
+    private val syncPostUseCase: SyncPostUseCase
 ) : ViewModel() {
 
     val authState: StateFlow<AuthState> = authRepository.authState()
@@ -34,18 +40,24 @@ class MainActivityViewModel @Inject constructor(
             scope = viewModelScope
         )
 
-    fun refreshUser() = viewModelScope.launch {
-        val result = refreshUserUseCase()
-        Log.d("TEXT_MAIN", "VIEWMODEL REFRESH_USER START")
-        when (result) {
-            is RequestResult.Error -> {
-                Log.d("TEXT_MAIN", "VIEWMODEL REFRESH_USER ERROR ${result.requestError}")
-            }
+    init {
+        syncPosts()
+    }
 
-            is RequestResult.Success<MSUser> -> {
-                Log.d("TEXT_MAIN", "VIEWMODEL REFRESH_USER START ${result.data}")
-            }
+    fun refreshUser() = viewModelScope.launch {
+        when (val result = refreshUserUseCase()) {
+            is RequestResult.Error -> {}
+            is RequestResult.Success<MSUser> -> {}
         }
+    }
+
+    fun syncPosts() = viewModelScope.launch {
+        authState
+            .filter { it == AuthState.AUTHENTICATED }
+            .flatMapLatest {
+                Log.d("TEST_MAIN", "AUTH_STATE $it")
+                syncPostUseCase().onEach { Log.d("TEST_MAIN", "SYNC_POST $it") }
+            }.collect()
     }
 
 }

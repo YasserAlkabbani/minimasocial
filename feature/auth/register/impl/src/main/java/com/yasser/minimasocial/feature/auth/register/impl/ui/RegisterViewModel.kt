@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yasser.minimasocial.core.common.request_result.RequestResult
 import com.yasser.minimasocial.core.domain.auth.RegisterUseCase
+import com.yasser.minimasocial.core.model.user.MSUser
 import com.yasser.minimasocial.core.ui.extentions.asSavableTextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,7 +51,7 @@ class RegisterViewModel @Inject constructor(
             passwordTextFieldState.text.toString()
         )
         when (loginRequest) {
-            is RequestResult.Success<Unit> -> {
+            is RequestResult.Success<MSUser> -> {
                 RegisterUIState.Success.send()
                 navigateBack()
             }

@@ -5,7 +5,7 @@ import com.yasser.minimasocial.core.network.model.auth.response.LoginResponse
 import com.yasser.minimasocial.core.network.model.auth.request.LoginRequestBody
 import com.yasser.minimasocial.core.network.model.auth.request.RegisterRequestBody
 import com.yasser.minimasocial.core.network.model.auth.response.RegisterResponse
-import com.yasser.minimasocial.core.network.model.auth.response.UserResponse
+import com.yasser.minimasocial.core.network.model.auth.UserNetwork
 
 interface AuthNetworkDataSource {
 
@@ -16,8 +16,6 @@ interface AuthNetworkDataSource {
     suspend fun login(
         loginRequestBody: LoginRequestBody
     ): RequestResult<LoginResponse>
-
-    suspend fun refreshUser(): RequestResult<UserResponse>
 
     suspend fun logout(): RequestResult<Boolean>
 

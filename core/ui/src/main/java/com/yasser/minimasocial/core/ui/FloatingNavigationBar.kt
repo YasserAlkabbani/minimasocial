@@ -4,18 +4,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingToolbarDefaults
 import androidx.compose.material3.HorizontalFloatingToolbar
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.yasser.minimasocial.core.designsystem.component.MSIcon
 import com.yasser.minimasocial.core.designsystem.icon.MSIcons
 
 @Composable
 fun MSFloatingNavigationBar(
     modifier: Modifier = Modifier,
+    addPost: (() -> Unit)?,
     content: @Composable RowScope.() -> Unit
 ) {
     Box(
@@ -26,12 +30,21 @@ fun MSFloatingNavigationBar(
     ) {
         HorizontalFloatingToolbar(
             modifier = modifier,
-            expanded = false,
+            expanded = true,
             shape = FloatingToolbarDefaults.ContainerShape,
             colors = FloatingToolbarDefaults.vibrantFloatingToolbarColors(),
             content = content,
-            leadingContent = {},
-            trailingContent = {},
+            floatingActionButton = {
+                addPost?.let {
+                    FloatingActionButton(
+                        shape = MaterialTheme.shapes.largeIncreased,
+                        content = {
+                            MSIcon(MSIcons.ADD_POST)
+                        },
+                        onClick = addPost
+                    )
+                }
+            }
         )
     }
 
@@ -42,6 +55,7 @@ fun MSFloatingNavigationBar(
 @Composable
 private fun MSFloatingNavigationBarPreview() {
     MSFloatingNavigationBar(
+        addPost = {},
         content = {
             MSFloatingNavigationBarItem(
                 icon = MSIcons.HOME,

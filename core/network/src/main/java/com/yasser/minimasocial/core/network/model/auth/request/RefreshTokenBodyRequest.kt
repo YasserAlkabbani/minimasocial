@@ -1,9 +1,9 @@
 package com.yasser.minimasocial.core.network.model.auth.request
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class RefreshTokenBodyRequest(
-    @SerialName("refresh_token") val refreshToken: String
+    @Json(name = "refresh_token") val refreshToken: String
 )

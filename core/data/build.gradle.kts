@@ -16,7 +16,7 @@ dependencies {
     implementation(projects.core.datastore)
     implementation(projects.core.model)
 
-    implementation(libs.kotlinx.serialization)
+    implementation(libs.room.paging)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
