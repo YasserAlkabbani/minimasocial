@@ -1,18 +1,20 @@
 package com.yasser.minimasocial.core.network.di
 
 import android.util.Log
+import com.squareup.moshi.Moshi
 import com.yasser.minimasocial.core.datastore.TokenManager
 import com.yasser.minimasocial.core.network.BuildConfig
 import com.yasser.minimasocial.core.network.model.auth.request.RefreshTokenBodyRequest
 import com.yasser.minimasocial.core.network.model.auth.response.RefreshTokenResponse
 import com.yasser.minimasocial.core.network.retrofit.AuthNetworkRetrofitApi
+import com.yasser.minimasocial.core.network.retrofit.PostNetworkRetrofitApi
+import com.yasser.minimasocial.core.network.retrofit.UserNetworkRetrofitApi
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -20,7 +22,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
@@ -142,37 +144,50 @@ internal object NetworkRetrofitModule {
 
         val httpLoggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             if (BuildConfig.DEBUG) setLevel(HttpLoggingInterceptor.Level.BODY)
+            else setLevel(HttpLoggingInterceptor.Level.NONE)
         }
 
         return OkHttpClient
             .Builder()
-            .addInterceptor(interceptor)
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(interceptor)
             .build()
     }
 
     @Provides
     @Singleton
-    fun providesNetworkJson(): Json = Json {
-        ignoreUnknownKeys = true
-    }
+    fun providesNetworkJson(): Moshi = Moshi
+        .Builder()
+        .build()
 
     @Singleton
     @Provides
     fun provideRetrofit(
-        json: Json,
+        moshi: Moshi,
         okHttpClient: Lazy<OkHttpClient>,
     ): Retrofit = Retrofit
         .Builder()
         .baseUrl(BuildConfig.SUPABASE_URL)
         .callFactory { request -> okHttpClient.get().newCall(request) }
-        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
     @Singleton
     @Provides
     fun provideAuthRetrofit(
         retrofit: Retrofit
-    ): AuthNetworkRetrofitApi = retrofit.create<AuthNetworkRetrofitApi>()
+    ): AuthNetworkRetrofitApi = retrofit.create()
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+        retrofit: Retrofit
+    ): UserNetworkRetrofitApi = retrofit.create()
+
+    @Singleton
+    @Provides
+    fun providePostRepository(
+        retrofit: Retrofit
+    ): PostNetworkRetrofitApi = retrofit.create()
 
 }

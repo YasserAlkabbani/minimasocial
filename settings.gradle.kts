@@ -77,6 +77,6 @@ include(":feature:post:create:impl")
 include(":feature:post:edit:api")
 include(":feature:post:edit:impl")
 
-include(":feature:post:view:api")
-include(":feature:post:view:impl")
+include(":feature:post:details:api")
+include(":feature:post:details:impl")
 

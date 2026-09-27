@@ -2,10 +2,14 @@ plugins {
     alias(libs.plugins.minimasocial.android.library)
     alias(libs.plugins.minimasocial.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 android {
     namespace = "com.yasser.minimasocial.core.database"
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {

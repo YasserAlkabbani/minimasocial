@@ -1,5 +1,6 @@
 package com.yasser.minimasocial.core.network
 
+import android.util.Log
 import com.yasser.minimasocial.core.common.request_result.RequestError
 import com.yasser.minimasocial.core.common.request_result.RequestResult
 import com.yasser.minimasocial.core.common.request_result.asRequestResult
@@ -28,8 +29,11 @@ private fun Throwable.handleHttpRequestError(): RequestResult.Error = when (this
 internal suspend fun <T> requestWithResult(
     request: suspend () -> T
 ): RequestResult<T> = try {
+    Log.d("REQUEST_WITH_RESULT", "TRY")
     val requestResult = request()
+    Log.d("REQUEST_WITH_RESULT", "SUCCESS")
     RequestResult.Success(requestResult)
 } catch (throwable: Throwable) {
+    Log.d("REQUEST_WITH_RESULT", "ERROR $throwable")
     throwable.handleHttpRequestError()
 }

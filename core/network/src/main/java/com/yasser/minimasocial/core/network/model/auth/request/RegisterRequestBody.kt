@@ -1,11 +1,11 @@
 package com.yasser.minimasocial.core.network.model.auth.request
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class RegisterRequestBody(
-    @SerialName("email") val email: String,
-    @SerialName("password") val password: String,
+    @Json(name = "email") val email: String,
+    @Json(name = "password") val password: String,
 )

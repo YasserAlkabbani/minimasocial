@@ -1,13 +1,12 @@
 package com.yasser.minimasocial.feature.auth.login.impl.ui
 
-import android.util.Log
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yasser.minimasocial.core.common.request_result.RequestResult
 import com.yasser.minimasocial.core.domain.auth.LoginUseCase
-import com.yasser.minimasocial.core.model.MSUser
+import com.yasser.minimasocial.core.model.user.MSUser
 import com.yasser.minimasocial.core.ui.extentions.asSavableTextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +41,6 @@ class LoginViewModel @Inject constructor(
     fun LoginNavigation.navigate() = loginNavigation.update { this }
     fun doneNavigation() = LoginNavigation.Idle.navigate()
     fun navigateToRegister() = LoginNavigation.Register.navigate()
-
 
     fun login() = viewModelScope.launch {
         LoginUIState.Loading.send()

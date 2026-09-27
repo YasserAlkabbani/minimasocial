@@ -7,12 +7,12 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
-class AndroidLibraryConventionPlugin: Plugin<Project> {
+class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        with(target){
-            apply(plugin="com.android.library")
+        with(target) {
+            apply(plugin = "com.android.library")
 
-            extensions.configure<LibraryExtension>{
+            extensions.configure<LibraryExtension> {
                 configureAndroidKotlin(this)
                 testOptions.targetSdk = 37
             }

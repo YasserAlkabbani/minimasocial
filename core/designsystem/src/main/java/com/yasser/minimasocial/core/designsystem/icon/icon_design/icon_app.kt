@@ -1,4 +1,4 @@
-package com.example.test
+package com.yasser.minimasocial.core.designsystem.icon.icon_design
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType
@@ -10,14 +10,14 @@ import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
 @Suppress("CheckReturnValue")
-public val icone_app: ImageVector
+public val icon_app: ImageVector
     get() {
-        if (_groups_3 != null) {
-            return _groups_3!!
+        if (_icon_app != null) {
+            return _icon_app!!
         }
-        _groups_3 =
+        _icon_app =
             ImageVector.Builder(
-                name = "groups_3",
+                name = "icon_app",
                 defaultWidth = 24.dp,
                 defaultHeight = 24.dp,
                 viewportWidth = 24f,
@@ -33,7 +33,7 @@ public val icone_app: ImageVector
                         strokeLineCap = StrokeCap.Butt,
                         strokeLineJoin = StrokeJoin.Bevel,
                         strokeLineMiter = 1f,
-                        pathFillType = PathFillType.Companion.NonZero,
+                        pathFillType = PathFillType.NonZero,
                     ) {
                         moveTo(4f, 13.52f)
                         lineTo(6.53f, 11f)
@@ -111,7 +111,7 @@ public val icone_app: ImageVector
                     }
                 }
                 .build()
-        return _groups_3!!
+        return _icon_app!!
     }
 
-private var _groups_3: ImageVector? = null
+private var _icon_app: ImageVector? = null

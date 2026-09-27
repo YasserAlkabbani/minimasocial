@@ -5,7 +5,6 @@ import com.yasser.minimasocial.core.network.model.auth.response.LoginResponse
 import com.yasser.minimasocial.core.network.model.auth.request.LoginRequestBody
 import com.yasser.minimasocial.core.network.model.auth.request.RegisterRequestBody
 import com.yasser.minimasocial.core.network.model.auth.response.RegisterResponse
-import com.yasser.minimasocial.core.network.model.auth.response.UserResponse
 import com.yasser.minimasocial.core.network.requestWithResult
 import com.yasser.minimasocial.core.network.retrofit.AuthNetworkRetrofitApi
 import javax.inject.Inject
@@ -24,10 +23,6 @@ class AuthNetworkDataSourceRetrofit @Inject constructor(
         loginRequestBody: LoginRequestBody
     ): RequestResult<LoginResponse> = requestWithResult {
         authNetworkRetrofitApi.login(loginRequestBody)
-    }
-
-    override suspend fun refreshUser(): RequestResult<UserResponse> = requestWithResult {
-        authNetworkRetrofitApi.refreshUser()
     }
 
     override suspend fun logout(): RequestResult<Boolean> = requestWithResult {

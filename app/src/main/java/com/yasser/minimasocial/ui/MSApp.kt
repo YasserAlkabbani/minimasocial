@@ -1,6 +1,5 @@
 package com.yasser.minimasocial.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -21,7 +20,7 @@ import com.yasser.minimasocial.core.navigation.toEntries
 import com.yasser.minimasocial.feature.auth.splash.impl.navigation.splashEntry
 import com.yasser.minimasocial.feature.auth.splash.api.SplashNavKey
 import com.yasser.minimasocial.core.designsystem.theme.MinimaSocialTheme
-import com.yasser.minimasocial.core.model.AuthState
+import com.yasser.minimasocial.core.model.auth.AuthState
 import com.yasser.minimasocial.core.ui.MSFloatingNavigationBar
 import com.yasser.minimasocial.core.ui.MSFloatingNavigationBarItem
 import com.yasser.minimasocial.feature.auth.login.api.LoginNavKey
@@ -29,9 +28,10 @@ import com.yasser.minimasocial.feature.auth.login.impl.navigation.loginEntry
 import com.yasser.minimasocial.feature.auth.register.impl.navigation.registerEntry
 import com.yasser.minimasocial.feature.home.api.HomeNavKey
 import com.yasser.minimasocial.feature.home.impl.navigation.homeEntry
+import com.yasser.minimasocial.feature.post.create.api.navigateToCreatePost
 import com.yasser.minimasocial.feature.post.create.impl.navigation.createPostEntity
 import com.yasser.minimasocial.feature.post.edit.impl.navigation.editPostEntity
-import com.yasser.minimasocial.feature.post.view.impl.navigation.viewPostEntity
+import com.yasser.minimasocial.feature.post.details.impl.navigation.viewPostEntity
 import com.yasser.minimasocial.feature.profile.impl.navigation.profileEntry
 import com.yasser.minimasocial.feature.search.impl.navigation.searchEntry
 import com.yasser.minimasocial.navigation.TOP_LEVEL_NAV_ITEMS
@@ -46,11 +46,8 @@ fun MSApp() {
     )
     val navigator = remember(navigationState) { Navigator(navigationState) }
 
-    Log.d("TEST_MAIN", "VIEWMODEL $viewModel")
     LaunchedEffect(viewModel.authState) {
-        Log.d("TEST_MAIN", "AUTH_STATE ${viewModel.authState}")
         viewModel.authState.collect {
-            Log.d("TEST_MAIN", "COLLECT_AUTH_STATE $it")
             when (it) {
                 AuthState.AUTHENTICATED -> navigator.navigate(
                     navKey = HomeNavKey,
@@ -80,7 +77,8 @@ fun MSApp() {
                                 onClick = { navigator.navigate(navKey) }
                             )
                         }
-                    }
+                    },
+                    addPost = { navigator.navigateToCreatePost() },
                 )
         },
         content = { innerPadding ->

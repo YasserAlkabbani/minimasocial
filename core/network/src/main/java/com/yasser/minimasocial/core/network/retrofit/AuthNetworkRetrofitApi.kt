@@ -6,7 +6,7 @@ import com.yasser.minimasocial.core.network.model.auth.request.RefreshTokenBodyR
 import com.yasser.minimasocial.core.network.model.auth.response.RefreshTokenResponse
 import com.yasser.minimasocial.core.network.model.auth.request.RegisterRequestBody
 import com.yasser.minimasocial.core.network.model.auth.response.RegisterResponse
-import com.yasser.minimasocial.core.network.model.auth.response.UserResponse
+import com.yasser.minimasocial.core.network.model.auth.UserNetwork
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -25,9 +25,6 @@ interface AuthNetworkRetrofitApi {
     suspend fun login(
         @Body body: LoginRequestBody
     ): LoginResponse
-
-    @GET("auth/v1/user")
-    suspend fun refreshUser(): UserResponse
 
     @POST("auth/v1/logout")
     suspend fun logout(): Boolean

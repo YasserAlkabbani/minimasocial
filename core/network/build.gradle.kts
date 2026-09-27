@@ -3,7 +3,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.minimasocial.android.library)
     alias(libs.plugins.minimasocial.hilt)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 val localProperties = Properties()
@@ -16,7 +15,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
-
     buildTypes {
         release {
             buildConfigField(
@@ -50,12 +48,12 @@ dependencies {
 
     implementation(projects.core.common)
     implementation(projects.core.datastore)
-    implementation(libs.kotlinx.datetime)
-    implementation(libs.kotlinx.serialization)
 
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.kotlinx.serialization)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.moshi)
+    ksp(libs.moshi.codegen)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

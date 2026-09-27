@@ -1,10 +1,8 @@
 package com.yasser.minimasocial.core.data.repository.auth
 
 import com.yasser.minimasocial.core.common.request_result.RequestResult
-import com.yasser.minimasocial.core.model.AuthState
-import com.yasser.minimasocial.core.model.Login
-import com.yasser.minimasocial.core.model.MSUser
-import com.yasser.minimasocial.core.model.Register
+import com.yasser.minimasocial.core.model.auth.AuthState
+import com.yasser.minimasocial.core.model.user.MSUser
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
@@ -12,23 +10,14 @@ interface AuthRepository {
     suspend fun login(
         email: String,
         password: String
-    ): RequestResult<Login>
+    ): RequestResult<MSUser>
 
     suspend fun register(
         email: String,
         password: String
-    ): RequestResult<Register>
-
-    suspend fun refreshUser(): RequestResult<MSUser>
+    ): RequestResult<MSUser>
 
     suspend fun logout(): RequestResult<Boolean>
-
-    suspend fun saveToken(
-        accessToken: String,
-        refreshToken: String
-    )
-
-    suspend fun clearToken()
 
     fun authState(): Flow<AuthState>
 
