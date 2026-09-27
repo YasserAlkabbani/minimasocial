@@ -4,16 +4,14 @@ plugins {
 }
 
 android {
-    namespace = "com.yasser.minimasocial.feature.home.impl"
+    namespace = "com.yasser.minimasocial.feature.post.details.impl"
 }
 
 dependencies {
-    implementation(projects.feature.home.api)
     implementation(projects.feature.post.details.api)
     implementation(projects.core.data)
     implementation(projects.core.domain)
-
-    implementation(libs.paging.compose)
+    implementation(projects.core.common)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -51,8 +51,8 @@ dependencies {
     implementation(projects.feature.post.create.impl)
     implementation(projects.feature.post.edit.api)
     implementation(projects.feature.post.edit.impl)
-    implementation(projects.feature.post.view.api)
-    implementation(projects.feature.post.view.impl)
+    implementation(projects.feature.post.details.api)
+    implementation(projects.feature.post.details.impl)
 
     implementation(projects.core.common)
     implementation(projects.core.ui)

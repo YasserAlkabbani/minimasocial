@@ -23,4 +23,7 @@ interface PostRepository {
     fun getUnSyncedPosts(): Flow<Post>
 
     fun getPostsPagingData(): Flow<PagingData<Post>>
+
+    fun getPostByID(postID: String): Flow<Post>
+
 }

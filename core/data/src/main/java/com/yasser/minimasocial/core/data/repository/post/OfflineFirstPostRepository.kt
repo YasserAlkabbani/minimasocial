@@ -67,4 +67,8 @@ class OfflineFirstPostRepository @Inject constructor(
     override fun getPostsPagingData(): Flow<PagingData<Post>> = { postDao.getPostsPagingSource() }
         .asPagingData { asModel() }
 
+    override fun getPostByID(postID: String): Flow<Post> = postDao
+        .getPostByID(postID)
+        .mapFlow { asModel() }
+
 }
